@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import LoginLogoutPage from './components/loginLogout/LoginLogoutPage'
+import HomePage from "./components/home/HomePage"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -23,19 +25,37 @@ function App() {
 
 
 
-  return (
+  return (<>
 
-    <div className="h-screen bg-white dark:bg-black duration-100">
 
-      <div className="">
 
-        {/* <button className='bg-blue-400 p-2 text-lg' onClick={handleTheme}>Click</button> */}
-      </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginLogoutPage />} />
+        <Route path="/home" element={<HomePage />} />
+      </Routes>
+    </BrowserRouter>
 
-      <LoginLogoutPage />
-    </div>
+
+  </>
+
+
+
+
 
   )
 }
 
 export default App
+
+// {/* <div className="h-screen bg-white dark:bg-black duration-100">
+
+// <div className="">
+
+//   {/* <button className='bg-blue-400 p-2 text-lg' onClick={handleTheme}>Click</button> */}
+// </div>
+
+// <LoginLogoutPage />
+
+
+// </div> */}
