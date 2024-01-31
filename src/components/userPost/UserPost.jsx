@@ -6,7 +6,7 @@ const UserPost = ({ username, caption }) => {
     return (
         <>
 
-            <div className="my-5 mb-10 max-w-[450px]" >
+            <div className="my-5 mb-10" >
                 <UserPostHeader username={username} />
                 <div className='mb-3'>
                     <img className='rounded-md ' src="./img1.png" alt="" />

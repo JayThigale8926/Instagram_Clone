@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { CommentLogo, NotificationsLogo, UnlikeLogo } from '../../assets/constants';
+import PostCommentInput from './PostCommentInput';
 
 const UserPostFooter = ({ username, caption }) => {
 
@@ -19,9 +20,9 @@ const UserPostFooter = ({ username, caption }) => {
 
     return (
         <>
-            <div className=" max-w-[450px]">
+            <div className="">
                 <div className="flex gap-3">
-                    <div className="hover:cursor-pointer " onClick={handleLike}>
+                    <div className="hover:cursor-pointer" onClick={handleLike}>
                         {isNotLiked ? (< NotificationsLogo />) : (<UnlikeLogo />)}
                     </div>
 
@@ -30,15 +31,22 @@ const UserPostFooter = ({ username, caption }) => {
                     </div>
                 </div>
                 <div className="">
-                    <h1 className='text-black'>{likes} likes</h1>
+                    <h1 className='text-black text-xs font-medium md:text-base '>{likes} likes</h1>
                 </div>
 
-                <div className="text-black max-w-[400px] overflow-hidden">
-                    <h1 className='text-base font-medium text-black hover:cursor-pointer'>{username} <span className='text-sm font-normal text-black'>{caption}</span></h1>
+                <div className="text-black max-w-[400px] overflow-hidden flex gap-2 ">
+                    <h1 className='text-sm font-medium text-black hover:cursor-pointer md:text-lg'>{username}
+                        {/* <span className='text-xs font-normal text-black md:text-sm'>{caption}</span> */}
+                    </h1>
+                    <h4 className="text-xs font-normal text-black flex items-center md:text-base">{caption}</h4>
                 </div>
 
                 <div className="">
-                    <h2 className='text-sm text-gray-400 hover:cursor-pointer'>View all comments...</h2>
+                    <h2 className='text-xs text-gray-400 hover:cursor-pointer md:text-base'>View all comments...</h2>
+                </div>
+
+                <div className="">
+                    <PostCommentInput />
                 </div>
 
             </div>

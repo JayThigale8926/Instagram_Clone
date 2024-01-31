@@ -15,47 +15,58 @@ const SideBar = () => {
     const sideBarIcons = [
         {
             icon: RiHome4Fill,
-            name: "Home"
+            name: "Home",
+            link: "/home"
         },
         {
             icon: IoSearch,
-            name: "Search"
+            name: "Search",
+            link: "/home"
         },
         {
             icon: IoMdNotificationsOutline,
-            name: "Notifications"
+            name: "Notifications",
+            link: "/home"
         },
         {
             icon: RiAddBoxLine,
-            name: "Create"
+            name: "Create",
+            link: "/home"
         },
         {
             icon: RxAvatar,
-            name: "Profile"
+            name: "Profile",
+            link: "/home"
         },
+        // {
+        //     icon: TbLogout2,
+        //     name: "Logout",
+        //     link: "/"
+        // }
 
     ]
 
     return (
         <>
 
-            <div className="h-full w-16 md:w-60 border-r-2  border-gray-200 fixed">
+            <div className="h-full flex justify-center border-r-2 border-gray-200 relative">
 
-                <div className="h-screen flex flex-col p-1">
+                <div className="h-full flex flex-col items-center p-1 fixed top-0">
 
-                    <Link to={'/home'} className="flex justify-center md:justify-start m-1 ">
+                    <Link to={'/home'} className="flex justify-center md:justify-start mb-2 w-[10px] md:w-56">
                         <div className='hidden md:flex w-[150px]'> <img src="./Instagram-logo.svg" alt="Instagram logo" /> </div>
-                        <div className='flex md:hidden font-medium w-5 h-5 items-end  justify-center'> <FaInstagram /></div>
+                        <div className='flex md:hidden font-medium  justify-center '> <FaInstagram /></div>
                     </Link>
 
 
                     {
                         sideBarIcons.map((item, index) =>
 
-                            <Link key={index} to={'/home'} className="flex justify-center md:justify-start gap-2  hover:bg-gray-200 hover:rounded-lg">
-                                <div className='w-5 h-5 items-end flex justify-center'> <item.icon /> </div>
-                                <div className='h-5 text-base font-medium hidden md:flex' > {item.name} </div>
+                            <Link key={index} to={item.link} className="w-[10px] md:w-56 flex justify-center md:justify-start gap-2 my-3 p-2 hover:bg-gray-200 hover:rounded-lg">
+                                <div className='items-center flex justify-center md:text-3xl'> <item.icon /> </div>
+                                <div className='text-base font-medium hidden md:flex '> {item.name} </div>
                             </Link>
+
                         )
                     }
 
@@ -79,12 +90,11 @@ const SideBar = () => {
                     <Link to={'/home'} className="flex justify-center md:justify-start gap-2 m-1 p-2 hover:bg-gray-200 hover:rounded-lg">
                         <div className="text-3xl" > <RxAvatar /> </div>
                         <div className='text-base font-medium hidden md:flex'>Profile</div>
-                    </Link> */}
+                    </Link>  */}
 
-
-                    <Link to={'/'} className="w-5 flex justify-center md:justify-start gap-2 mt-auto m-1 p-2 hover:bg-gray-200 hover:rounded-lg">
-                        <div className="w-5 h-5 items-end flex justify-center" > <TbLogout2 /> </div>
-                        <div className='h-5 text-base font-medium hidden md:flex'>Logout</div>
+                    <Link to={'/'} className="flex justify-center md:justify-start gap-2 mt-auto w-[10px] md:w-56 p-2 hover:bg-gray-200 hover:rounded-lg" >
+                        <div className="flex justify-center md:text-3xl " > <TbLogout2 /> </div>
+                        <div className='text-base font-medium hidden md:flex'>Logout</div>
                     </Link>
 
                 </div>
@@ -95,4 +105,6 @@ const SideBar = () => {
 }
 
 export default SideBar
+
+
 
