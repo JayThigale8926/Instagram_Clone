@@ -49,22 +49,22 @@ const SideBar = () => {
     return (
         <>
 
-            <div className="h-full flex justify-center border-r-2 border-gray-200 relative">
+            <div className="h-full flex justify-center border-r-2 border-gray-200 relative mx-1">
 
-                <div className="h-full flex flex-col items-center p-1 fixed top-0">
+                <div className="h-full flex flex-col items-center p-1 fixed top-0 ">
 
                     <Link to={'/home'} className="flex justify-center md:justify-start mb-2 w-[10px] md:w-56">
-                        <div className='hidden md:flex w-[150px]'> <img src="./Instagram-logo.svg" alt="Instagram logo" /> </div>
-                        <div className='flex md:hidden font-medium  justify-center '> <FaInstagram /></div>
+                        <div className='hidden lg:flex w-[150px]'> <img src="./Instagram-logo.svg" alt="Instagram logo" /> </div>
+                        <div className='flex lg:hidden font-medium  justify-center '> <FaInstagram /></div>
                     </Link>
 
 
                     {
                         sideBarIcons.map((item, index) =>
 
-                            <Link key={index} to={item.link} className="w-[10px] md:w-56 flex justify-center md:justify-start gap-2 my-3 p-2 hover:bg-gray-200 hover:rounded-lg">
+                            <Link key={index} to={item.link} className="w-[10px] lg:w-56 flex justify-center lg:justify-start gap-2 my-3  p-2 hover:bg-gray-200 hover:rounded-lg">
                                 <div className='items-center flex justify-center md:text-3xl'> <item.icon /> </div>
-                                <div className='text-base font-medium hidden md:flex '> {item.name} </div>
+                                <div className='text-base font-medium hidden lg:flex '> {item.name} </div>
                             </Link>
 
                         )
@@ -92,9 +92,9 @@ const SideBar = () => {
                         <div className='text-base font-medium hidden md:flex'>Profile</div>
                     </Link>  */}
 
-                    <Link to={'/'} className="flex justify-center md:justify-start gap-2 mt-auto w-[10px] md:w-56 p-2 hover:bg-gray-200 hover:rounded-lg" >
+                    <Link to={'/'} className="flex justify-center lg:justify-start gap-2 mt-auto w-[10px] lg:w-56 p-2 hover:bg-gray-200 hover:rounded-lg" >
                         <div className="flex justify-center md:text-3xl " > <TbLogout2 /> </div>
-                        <div className='text-base font-medium hidden md:flex'>Logout</div>
+                        <div className='text-base font-medium hidden lg:flex'>Logout</div>
                     </Link>
 
                 </div>
