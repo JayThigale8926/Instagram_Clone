@@ -36,13 +36,8 @@ const SideBar = () => {
         {
             icon: RxAvatar,
             name: "Profile",
-            link: "/home"
+            link: "/JayT"
         },
-        // {
-        //     icon: TbLogout2,
-        //     name: "Logout",
-        //     link: "/"
-        // }
 
     ]
 

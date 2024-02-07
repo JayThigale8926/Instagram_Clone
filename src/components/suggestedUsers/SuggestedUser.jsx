@@ -2,6 +2,9 @@ import React from 'react'
 import Avatar from '../avatar/Avatar'
 
 const SuggestedUser = ({ name, followers, img }) => {
+
+
+
     return (
         <>
             <div className="md:w-30 flex justify-between p-2 sm:flex-col md:flex-row">

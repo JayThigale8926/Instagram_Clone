@@ -10,11 +10,11 @@ const PageLayout = ({ children }) => {
                 <div className="flex ">
                     {/* ----------------SideBar--------------- */}
                     {
-                        pathname === "/home" ? <div className='w-16 lg:w-60'> <SideBar /> </div> : null
+                        pathname !== "/" ? <div className='w-16 lg:w-60'> <SideBar /> </div> : null
                     }
 
                     {/* ----------------Home Page--------------    */}
-                    <div className="flex w-[calc(100% - 64px) ] md:w-[calc(100% - 240px)]">
+                    <div className="flex w-[calc(100% - 64px) ] lg:w-[calc(100% - 240px)]">
                         {children}
                     </div>
                 </div>
