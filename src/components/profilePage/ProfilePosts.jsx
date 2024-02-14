@@ -3,6 +3,7 @@ import { CommentLogo, NotificationsLogo, UnlikeLogo } from '../../assets/constan
 import Modal from '../modal/Modal';
 import Comment from '../comment/Comment';
 import PostCommentInput from '../userPost/PostCommentInput';
+import UserPostFooter from '../userPost/UserPostFooter';
 
 const ProfilePosts = () => {
 
@@ -71,7 +72,7 @@ const ProfilePosts = () => {
                                     </div>
 
                                     <div className="sticky bottom-0 w-full">
-                                        <PostCommentInput />
+                                        <UserPostFooter isProfilePost={true} />
                                     </div>
 
                                 </div>
