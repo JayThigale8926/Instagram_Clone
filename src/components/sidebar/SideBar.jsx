@@ -9,8 +9,13 @@ import { RxAvatar } from "react-icons/rx";
 import { TbLogout2 } from "react-icons/tb";
 
 import { Link } from 'react-router-dom';
+import useLogOut from '../../hooks/useLogOut';
+import useAuthStore from '../../store/useAuthStore';
 
 const SideBar = () => {
+
+    const userId = useAuthStore(state => state.userId)
+    console.log(userId)
 
     const sideBarIcons = [
         {
@@ -40,6 +45,9 @@ const SideBar = () => {
         },
 
     ]
+
+    const { handleLogOut, error } = useLogOut();
+
 
     return (
         <>
@@ -87,10 +95,16 @@ const SideBar = () => {
                         <div className='text-base font-medium hidden md:flex'>Profile</div>
                     </Link>  */}
 
-                    <Link to={'/'} className="flex justify-center lg:justify-start gap-2 mt-auto w-[10px] lg:w-56 p-2 hover:bg-gray-200 hover:rounded-lg" >
+                    {/* <Link to={'/'} className="flex justify-center lg:justify-start gap-2 mt-auto w-[10px] lg:w-56 p-2 hover:bg-gray-200 hover:rounded-lg" >
                         <div className="flex justify-center md:text-3xl " > <TbLogout2 /> </div>
                         <div className='text-base font-medium hidden lg:flex'>Logout</div>
-                    </Link>
+                    </Link> */}
+
+                    <div className="flex justify-center lg:justify-start gap-2 mt-auto w-[10px] lg:w-56 p-2 hover:bg-gray-200 hover:rounded-lg hover:cursor-pointer" onClick={handleLogOut}>
+                        <div className="flex justify-center md:text-3xl"> <TbLogout2 /> </div>
+                        <div className='text-base font-medium hidden lg:flex'>Logout</div>
+
+                    </div>
 
                 </div>
             </div >

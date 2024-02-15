@@ -14,7 +14,7 @@ const Signup = () => {
     });
 
     const [showPassword, setShowPassword] = useState(false);
-    const { loading, error, signup } = useSignUpWithEmailAndPassword();
+    const { loading, error, signUp } = useSignUpWithEmailAndPassword();
 
     return <>
 
@@ -64,7 +64,7 @@ const Signup = () => {
         />
         }
 
-        <button className='h-10 w-[280px] mb-3 rounded-md px-5 py-2 bg-blue-400 text-lg font-semibold text-white hover:bg-blue-500 duration-100' onClick={signup}> Sign up </button>
+        <button className='h-10 w-[280px] mb-3 rounded-md px-5 py-2 bg-blue-400 text-lg font-semibold text-white hover:bg-blue-500 duration-100' onClick={() => signUp(inputs)}> Sign up </button>
 
     </>
 }
