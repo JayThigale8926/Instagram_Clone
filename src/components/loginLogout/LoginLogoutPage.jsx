@@ -8,8 +8,6 @@ const LoginLogoutPage = () => {
 
     const [isLogin, setIsLogin] = useState(true);
 
-
-
     return (
         <>
             <div className="h-screen flex items-center justify-center ">
@@ -22,37 +20,14 @@ const LoginLogoutPage = () => {
                     </div>
 
                     <div className="flex flex-col w-[310px] mt-5">
-                        <div className="w-[310px] flex flex-col items-center  border-2 border-gray-700 rounded-md">
-                            {/* <img className='' src="./logo.png" alt="" />
-
-
-                            <input className='bg-transparent h-10 w-[280px] mb-3 rounded-md px-5 py-2 border-2 border-gray-400 focus:outline-none focus:border-blue-400 
-                                dark:border-gray-700 dark:text-gray-400 dark:focus:border-blue-400' type="text"
-                                placeholder='Email'
-                                value={inputs.email}
-                                onChange={(e) => setInputs({ ...inputs, email: e.target.value })}
-                            />
-
-                            <input className='bg-transparent h-10 w-[280px] mb-3 rounded-md px-5 py-2 border-2 border-gray-400 focus:outline-none focus:border-blue-400 
-                                dark:border-gray-700 dark:text-gray-400 dark:focus:border-blue-400' type="password" placeholder='Password'
-                                value={inputs.password}
-                                onChange={(e) => setInputs({ ...inputs, password: e.target.value })}
-                            /> */}
+                        <div className="w-[310px] flex flex-col items-center  border-2 border-gray-700      rounded-md">
                             {isLogin ?
                                 (<Login />)
                                 :
                                 (<Signup />)
                             }
 
-
-                            {/* {isLogin ? "" : <input className='bg-transparent h-10 w-[280px] mb-3 rounded-md px-5 py-2 border-2 border-gray-400 focus:outline-none focus:border-blue-400 
-                                    dark:border-gray-700 dark:text-gray-400 dark:focus:border-blue-400' type="password" placeholder='Confirm Password'
-                                value={inputs.confirmPassword}
-                                onChange={(e) => setInputs({ ...inputs, confirmPassword: e.target.value })}
-                            />
-                            } */}
-
-                            <GoogleAuth />
+                            <GoogleAuth isLogin={isLogin} />
 
                         </div>
 

@@ -14,8 +14,7 @@ import useAuthStore from '../../store/useAuthStore';
 
 const SideBar = () => {
 
-    const userId = useAuthStore(state => state.userId)
-    console.log(userId)
+    const userDetails = useAuthStore((state) => state.user)
 
     const sideBarIcons = [
         {
@@ -41,7 +40,7 @@ const SideBar = () => {
         {
             icon: RxAvatar,
             name: "Profile",
-            link: "/JayT"
+            link: `/${userDetails?.userName}`
         },
 
     ]

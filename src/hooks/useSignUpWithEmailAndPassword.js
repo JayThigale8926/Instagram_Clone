@@ -8,8 +8,6 @@ import useAuthStore from '../store/useAuthStore';
 const useSignUpWithEmailAndPassword = () => {
     const loginUser = useAuthStore(state => state.login)
 
-
-
     const [
         createUserWithEmailAndPassword,
         user,
@@ -41,7 +39,7 @@ const useSignUpWithEmailAndPassword = () => {
                 return
             }
             if (newUser) {
-                console.log("inside create")
+
                 const userDoc = {
                     uid: newUser.user.uid,
                     email: inputs.email,
@@ -58,7 +56,7 @@ const useSignUpWithEmailAndPassword = () => {
                 await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
                 localStorage.setItem("user-info", JSON.stringify(userDoc));
                 loginUser(userDoc);
-                console.log("User Doc created");
+
             }
 
         } catch (e) {

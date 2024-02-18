@@ -9,7 +9,7 @@ const UserPostHeader = ({ username }) => {
                     <Avatar img="./img1.png" />
 
                     <h1 className='text-sm font-medium text-black hover:cursor-pointer md:text-xl'>{username}</h1>
-                    <h2 className='text-[10px] text-gray-400 md:text-sm md:flex'> • 2d ago </h2>
+                    <h2 className='text-[10px]  text-gray-400 md:text-sm md:flex'> • 2d ago </h2>
                 </div>
 
                 <div className='text-xs md:text-base font-medium text-black hover:text-red-500 hover:cursor-pointer'>

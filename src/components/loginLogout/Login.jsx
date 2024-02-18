@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { FiEyeOff } from "react-icons/fi";
 import { FiEye } from "react-icons/fi";
+import useLogIn from '../../hooks/useLogIn';
 
 const Login = () => {
 
@@ -10,6 +11,8 @@ const Login = () => {
     });
 
     const [showPassword, setShowPassword] = useState(false);
+
+    const { handleLogin } = useLogIn()
 
     return <>
         <img className='' src="./logo.png" alt="" />
@@ -40,7 +43,7 @@ const Login = () => {
         </div>
 
 
-        <button className='h-10 w-[280px] mb-3 rounded-md px-5 py-2 bg-blue-400 text-lg font-semibold text-white hover:bg-blue-500 duration-100'>Log in</button>
+        <button className='h-10 w-[280px] mb-3 rounded-md px-5 py-2 bg-blue-400 text-lg font-semibold text-white hover:bg-blue-500 duration-100' onClick={() => handleLogin(inputs)}>Log in</button>
 
 
         <div className="flex items-center">
