@@ -9,9 +9,10 @@ const GoogleAuth = ({ isLogin }) => {
     const loginUser = useAuthStore((state) => state.login)
 
     const handleGoogleAuth = async () => {
-        console.log("in HandleAuth")
+
         try {
             const newUser = await signInWithGoogle();
+
             if (!newUser && error) {
                 alert(`Error : ${error}`)
                 return
@@ -25,6 +26,7 @@ const GoogleAuth = ({ isLogin }) => {
                 localStorage.setItem("user-info", JSON.stringify(userDoc));
                 loginUser(userDoc);
             }
+
             //SignUp
             else {
                 const userDoc = {
@@ -33,7 +35,7 @@ const GoogleAuth = ({ isLogin }) => {
                     fullName: newUser.user.displayName,
                     userName: newUser.user.email.split("@")[0],
                     bio: "",
-                    profilePicUrl: "", //newUser.user.photoURL,
+                    profilePicUrl: newUser.user.photoURL,
                     followers: [],
                     following: [],
                     posts: [],
@@ -55,7 +57,7 @@ const GoogleAuth = ({ isLogin }) => {
     }
 
     return <>
-        <div className="flex items-center gap-2 my-5" onClick={handleGoogleAuth}>
+        <div className="flex items-center gap-2 my-5 hover:cursor-pointer" onClick={handleGoogleAuth}>
             <img className='h-5 w-5' src="./google.png" alt="" />
             <p className='text-blue-600'> {isLogin ? ("Log in with Google") : ("Signup with Google")} </p>
         </div>

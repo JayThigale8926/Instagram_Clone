@@ -13,7 +13,7 @@ const Modal = ({ visible, closeModal, children }) => {
 
     return (
         <>
-            <div id='wrapper' className=" overflow-y-auto fixed bg-black bg-opacity-5 inset-0 backdrop-blur-2xl flex flex-col justify-center items-center" onClick={handleCloseModal}>
+            <div id='wrapper' className="z-50 overflow-y-auto fixed bg-black bg-opacity-5 inset-0 backdrop-blur-2xl flex flex-col justify-center items-center" onClick={handleCloseModal}>
 
                 <div className="w-auto">
                     <div className="w-full">

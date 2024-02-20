@@ -2,7 +2,6 @@ import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { auth } from '../firebase/firebase';
 import { firestore } from '../firebase/firebase';
 import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
-import { useState } from 'react';
 import useAuthStore from '../store/useAuthStore';
 
 const useSignUpWithEmailAndPassword = () => {

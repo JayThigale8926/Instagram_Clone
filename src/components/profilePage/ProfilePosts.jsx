@@ -31,7 +31,8 @@ const ProfilePosts = () => {
         <>
             <div className="w-[250px]">
                 <div className="">
-                    <img className='w-[250px] h-[250px] object-cover rounded-md overflow-hidden  hover:cursor-pointer' onClick={handleModal} src="./img1.png" alt="" />
+                    <img className='w-[250px] h-[250px] object-cover rounded-md overflow-hidden transform transition duration-500 
+                                hover:scale-110 hover:cursor-pointer ' onClick={handleModal} src="./img1.png" alt="" />
                 </div>
 
 

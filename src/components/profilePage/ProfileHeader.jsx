@@ -1,17 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Modal from '../modal/Modal';
+import ProfileEdit from './ProfileEdit';
 
-const ProfileHeader = ({ username, posts, followers, following, bio }) => {
+const ProfileHeader = ({ username, imgURL, posts, followers, following, bio }) => {
+
+    const [isVisible, setIsVisible] = useState(false);
+
+    const handleModal = () => {
+        setIsVisible(!isVisible);
+    }
+
     return (
         <>
             <div className="flex flex-col gap-4 p-4 items-center md:flex-row">
 
-                <img className='rounded-full h-24 w-24 object-cover border-[3px] border-gray-500' src="./img1.png" alt="avatar" />
-
+                <img className='rounded-full h-24 w-24 object-cover border-[3px] border-gray-500' src={imgURL} alt="Avatar" />
 
                 <div className="flex flex-col gap-3">
                     <div className="flex gap-2 justify-center md:justify-start">
                         <h1 className='text-base font-semibold '>{username}</h1>
-                        <button className='text-sm font-medium bg-slate-200 p-1 rounded-md hover:bg-slate-300'>Edit Profile</button>
+                        <button className='text-sm font-medium bg-slate-200 p-1 rounded-md hover:bg-slate-300' onClick={handleModal}>Edit Profile</button>
+
+                        <Modal visible={isVisible} closeModal={() => setIsVisible(!isVisible)}>
+                            <ProfileEdit handleModal={handleModal} />
+
+                        </Modal>
+
                     </div>
 
                     <div className="flex flex-row gap-2 justify-center md:justify-start">
