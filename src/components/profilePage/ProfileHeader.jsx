@@ -16,6 +16,7 @@ const ProfileHeader = ({ username, imgURL, posts, followers, following, bio }) =
 
                 <img className='rounded-full h-24 w-24 object-cover border-[3px] border-gray-500' src={imgURL} alt="Avatar" />
 
+
                 <div className="flex flex-col gap-3">
                     <div className="flex gap-2 justify-center md:justify-start">
                         <h1 className='text-base font-semibold '>{username}</h1>

@@ -33,7 +33,7 @@ const ProfilePage = () => {
                                 <ProfileHeader username={userProfile.fullName} posts={userProfile.posts.length} followers={userProfile.followers.length} imgURL={userProfile.profilePicUrl} following={userProfile.following.length}
                                     bio={userProfile.bio} />
 
-
+                                {/* {console.log(userProfile.profilePicUrl)} */}
                             </div>
                             <div className="flex flex-col gap-5">
                                 <ProfileTabs />

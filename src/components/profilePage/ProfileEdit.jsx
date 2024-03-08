@@ -1,11 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
+import useAuthStore from '../../store/useAuthStore'
 
 const ProfileEdit = ({ handleModal }) => {
 
+    const userProfileDetails = useAuthStore((state) => state.user)
+
+    // { console.log(userProfileDetails.fullName) }
+
+    const [inputs, setInputs] = useState({
+        fullname: "",
+        username: "",
+        bio: ""
+    })
 
     const handleModalClose = () => {
         handleModal();
     }
+
+    const handleProfileSave = () => {
+        console.log(userProfileDetails)
+        console.log(inputs.fullname)
+        console.log(inputs.username)
+        console.log(inputs.bio)
+
+    }
+
 
     return <>
         <div className="">
@@ -27,23 +46,34 @@ const ProfileEdit = ({ handleModal }) => {
 
                     <div className=" w-full text-xs mb-4">
                         <label className="font-semibold text-gray-600">Fullname <abbr title="required">*</abbr></label>
-                        <input placeholder="Enter fullname" className="appearance-none block w-52 md:w-64 bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text" />
+                        <input placeholder="Enter fullname" className="appearance-none block w-52 md:w-64 bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text"
+                            value={inputs.fullname || userProfileDetails.fullName}
+                            onChange={(e) => setInputs({ ...inputs, fullname: e.target.value })} />
                     </div>
+
                     <div className=" w-full text-xs mb-4">
                         <label className="font-semibold text-gray-600">Username <abbr title="required">*</abbr></label>
-                        <input placeholder="Enter username" className="appearance-none block w-52 md:w-64 bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text" />
+                        <input placeholder="Enter username" className="appearance-none block w-52 md:w-64 bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text"
+                            value={inputs.username || userProfileDetails.userName}
+                            onChange={(e) => setInputs({ ...inputs, username: e.target.value })} />
                     </div>
+
                     <div className=" w-full text-xs mb-4">
-                        <label className="font-semibold text-gray-600">Bio <abbr title="required">*</abbr></label>
-                        <input placeholder="Enter bio" className="appearance-none block w-52 md:w-64 bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text" />
+                        <label className="font-semibold text-gray-600" >Bio <abbr title="required">*</abbr></label>
+                        <input placeholder="Enter bio" className="appearance-none block w-52 md:w-64 bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text"
+                            value={inputs.bio || userProfileDetails.bio}
+                            onChange={(e) => setInputs({ ...inputs, bio: e.target.value })} />
                     </div>
 
                 </div>
 
 
                 <div className="mt-5 text-right flex gap-6">
-                    <button className="mb-2  bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100" onClick={handleModalClose}> Cancel </button>
-                    <button className="mb-2  bg-blue-400 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg  hover:bg-blue-600">Save</button>
+                    <button className="mb-2  bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100"
+                        onClick={handleModalClose}> Cancel </button>
+
+                    <button className="mb-2  bg-blue-400 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg  hover:bg-blue-600"
+                        onClick={handleProfileSave}>Save</button>
                 </div>
 
             </div>
