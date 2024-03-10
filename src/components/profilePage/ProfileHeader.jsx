@@ -3,12 +3,16 @@ import Modal from '../modal/Modal';
 import ProfileEdit from './ProfileEdit';
 import { useParams } from "react-router-dom"
 import useAuthStore from '../../store/useAuthStore';
+import useFollowUnfollowUser from '../../hooks/useFollowUnfollowUser';
+import useUserProfileStore from '../../store/userProfileStore';
 
 
 const ProfileHeader = ({ username, imgURL, posts, followers, following, bio }) => {
 
     const [isVisible, setIsVisible] = useState(false);
     const currentUser = useAuthStore((state) => state.user)
+    const { userProfile } = useUserProfileStore();
+    const { isUpdating, isFollowing, handleFollowUnfollowUser } = useFollowUnfollowUser(userProfile?.uid);
 
     const { user } = useParams();
 
@@ -32,7 +36,14 @@ const ProfileHeader = ({ username, imgURL, posts, followers, following, bio }) =
                         {isCurrUser ?
                             (<button className='text-sm font-medium bg-slate-200 p-1 rounded-md hover:bg-slate-300' onClick={handleModal}>Edit Profile</button>)
                             :
-                            (<button className='text-sm font-medium bg-slate-200 p-1 rounded-md hover:bg-slate-300'>Follow</button>)
+                            (<button className='text-sm font-medium bg-slate-200 p-1 rounded-md hover:bg-slate-300' onClick={() => handleFollowUnfollowUser()}>
+                                {
+                                    isFollowing ?
+                                        ("Unfollow")
+                                        :
+                                        ("Follow")
+                                }
+                            </button>)
                         }
 
 
@@ -45,7 +56,7 @@ const ProfileHeader = ({ username, imgURL, posts, followers, following, bio }) =
 
                     <div className="flex flex-row gap-2 justify-center md:justify-start">
                         <p className='text-sm font-medium'> {posts} posts</p>
-                        <p className='text-sm font-medium'> {followers} followers</p>
+                        <p className='text-sm font-medium'> {userProfile.followers.length} followers</p>
                         <p className='text-sm font-medium'> {following} following </p>
                     </div>
 

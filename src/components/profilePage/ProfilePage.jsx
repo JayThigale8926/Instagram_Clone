@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ProfileHeader from './ProfileHeader'
 import ProfileTabs from './ProfileTabs'
 import ProfilePost from './ProfilePost'
@@ -7,12 +7,17 @@ import useGetUserProfileByUsername from '../../hooks/useGetUserProfileByUsername
 
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import useUserProfileStore from '../../store/userProfileStore'
 
 const ProfilePage = () => {
 
     const { user } = useParams();
-    const { isLoading, userProfile } = useGetUserProfileByUsername(user);
+    const { isLoading } = useGetUserProfileByUsername(user);
+    const { userProfile } = useUserProfileStore();
     const userNotAvail = !userProfile && !isLoading;
+
+
+
     if (userNotAvail) {
         return <>
             <UserNotFound />
@@ -30,10 +35,14 @@ const ProfilePage = () => {
                     (
                         <>
                             <div className="">
-                                <ProfileHeader username={userProfile.fullName} posts={userProfile.posts.length} followers={userProfile.followers.length} imgURL={userProfile.profilePicUrl} following={userProfile.following.length}
-                                    bio={userProfile.bio} />
-
-                                {/* {console.log(userProfile.profilePicUrl)} */}
+                                <ProfileHeader
+                                    username={userProfile.fullName}
+                                    posts={userProfile.posts.length}
+                                    followers={userProfile.followers.length}
+                                    following={userProfile.following.length}
+                                    imgURL={userProfile.profilePicUrl}
+                                    bio={userProfile.bio}
+                                />
                             </div>
                             <div className="flex flex-col gap-5">
                                 <ProfileTabs />
@@ -46,6 +55,8 @@ const ProfilePage = () => {
 
         </div >
     )
+
+
 }
 
 export default ProfilePage
