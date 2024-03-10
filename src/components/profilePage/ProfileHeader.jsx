@@ -1,10 +1,18 @@
 import React, { useState } from 'react'
 import Modal from '../modal/Modal';
 import ProfileEdit from './ProfileEdit';
+import { useParams } from "react-router-dom"
+import useAuthStore from '../../store/useAuthStore';
+
 
 const ProfileHeader = ({ username, imgURL, posts, followers, following, bio }) => {
 
     const [isVisible, setIsVisible] = useState(false);
+    const currentUser = useAuthStore((state) => state.user)
+
+    const { user } = useParams();
+
+    const isCurrUser = currentUser.userName === user;
 
     const handleModal = () => {
         setIsVisible(!isVisible);
@@ -20,7 +28,13 @@ const ProfileHeader = ({ username, imgURL, posts, followers, following, bio }) =
                 <div className="flex flex-col gap-3">
                     <div className="flex gap-2 justify-center md:justify-start">
                         <h1 className='text-base font-semibold '>{username}</h1>
-                        <button className='text-sm font-medium bg-slate-200 p-1 rounded-md hover:bg-slate-300' onClick={handleModal}>Edit Profile</button>
+
+                        {isCurrUser ?
+                            (<button className='text-sm font-medium bg-slate-200 p-1 rounded-md hover:bg-slate-300' onClick={handleModal}>Edit Profile</button>)
+                            :
+                            (<button className='text-sm font-medium bg-slate-200 p-1 rounded-md hover:bg-slate-300'>Follow</button>)
+                        }
+
 
                         <Modal visible={isVisible} closeModal={() => setIsVisible(!isVisible)}>
                             <ProfileEdit handleModal={handleModal} />

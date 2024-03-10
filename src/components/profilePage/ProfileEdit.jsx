@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import useAuthStore from '../../store/useAuthStore'
+import usePreviewImg from '../../hooks/usePreviewImg'
+import useEditProfile from '../../hooks/useEditProfile'
 
 const ProfileEdit = ({ handleModal }) => {
 
     const userProfileDetails = useAuthStore((state) => state.user)
-
-    // { console.log(userProfileDetails.fullName) }
+    const { selectedFile, handleImgChange, setSelectedFile } = usePreviewImg();
+    const { editProfile, isUpdating } = useEditProfile()
 
     const [inputs, setInputs] = useState({
         fullname: "",
@@ -17,14 +19,16 @@ const ProfileEdit = ({ handleModal }) => {
         handleModal();
     }
 
-    const handleProfileSave = () => {
-        console.log(userProfileDetails)
-        console.log(inputs.fullname)
-        console.log(inputs.username)
-        console.log(inputs.bio)
-
+    const handleEditProfile = async () => {
+        try {
+            await editProfile(inputs, selectedFile)
+            setSelectedFile(null);
+            handleModal();
+        }
+        catch (error) {
+            alert("Error while updating in ProfileEdit")
+        }
     }
-
 
     return <>
         <div className="">
@@ -33,11 +37,13 @@ const ProfileEdit = ({ handleModal }) => {
             <div className="w-60 flex flex-col items-center p-6 m-6 md:w-[500px]">
                 <div className='flex p-2 mb-3 items-center '>
                     <div className="mr-4 flex-none rounded-full border overflow-hidden">
-                        <img className="w-24 h-24 object-cover" src="./img1.png" alt="Avatar Upload" />
+                        <img className="w-24 h-24 object-cover"
+                            src={selectedFile || userProfileDetails.profilePicUrl}
+                            alt="Avatar Upload" />
                     </div>
                     <label className="cursor-pointer ">
                         <span className="focus:outline-none text-white text-sm py-2 px-4 rounded-full bg-blue-400 hover:bg-blue-600 hover:shadow-lg">Browse</span>
-                        <input type="file" className='hidden' />
+                        <input type="file" className='hidden' onChange={handleImgChange} />
                     </label>
 
                 </div>
@@ -73,7 +79,7 @@ const ProfileEdit = ({ handleModal }) => {
                         onClick={handleModalClose}> Cancel </button>
 
                     <button className="mb-2  bg-blue-400 px-5 py-2 text-sm shadow-sm font-medium tracking-wider text-white rounded-full hover:shadow-lg  hover:bg-blue-600"
-                        onClick={handleProfileSave}>Save</button>
+                        onClick={handleEditProfile}>Save</button>
                 </div>
 
             </div>
