@@ -1,23 +1,42 @@
-import React from 'react'
-import Avatar from '../avatar/Avatar'
-
-const SuggestedUser = ({ name, followers, img }) => {
+import useFollowUnfollowUser from "../../hooks/useFollowUnfollowUser"
+import useAuthStore from "../../store/useAuthStore";
 
 
+const SuggestedUser = ({ user, setUser }) => {
+
+    const { isUpdating, isFollowing, handleFollowUnfollowUser } = useFollowUnfollowUser(user.uid);
+    const authUser = useAuthStore(state => state.user)
+
+    const handleFollowUnfollow = async () => {
+        await handleFollowUnfollowUser();
+        setUser({
+            ...user,
+            followers: isFollowing ?
+                user.followers.filter((follower) => follower.uid !== authUser.uid)
+                : [...user.followers, authUser]
+
+        })
+    }
 
     return (
         <>
             <div className="md:w-30 flex justify-between p-2 sm:flex-col md:flex-row">
-
                 <div className="flex gap-2">
-                    <img className='rounded-full w-10 h-10 object-cover' src={img} alt="" />
+                    <img className='rounded-full w-10 h-10 object-cover' src={user.profilePicUrl} alt="" />
                     <div className="p-1">
-                        <p className="text-base font-medium"> {name} </p>
-                        <p className=" text-[10px] font-medium "> {followers} followers </p>
+                        <p className="text-base font-medium"> {user.fullName} </p>
+                        <p className=" text-[10px] font-medium "> {user.followers.length} followers </p>
                     </div>
                 </div>
 
-                <button className=' text-[12px] font-medium  text-gray-400 hover:text-black hover:cursor-pointer'>Follow</button>
+                {
+                    authUser.uid !== user.uid
+                    &&
+                    (<button className=' text-[0.75rem] font-medium  text-gray-400 hover:text-black hover:cursor-pointer' onClick={handleFollowUnfollow}>
+                        {isFollowing ? "UnFollow" : "Follow"}
+                    </button>)
+                }
+
 
             </div>
 

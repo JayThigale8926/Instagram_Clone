@@ -34,9 +34,9 @@ const HomePage = () => {
                             </div>
                         </div>
 
-                        <SuggestedUsers followers={1000} name={"Jay Thigale"} img={"./img3.png"} />
+                        {/* <SuggestedUsers followers={1000} name={"Jay Thigale"} img={"./img3.png"} />
                         <SuggestedUsers followers={1000} name={"Sankalpa Thigale"} img={"./img1.png"} />
-                        <SuggestedUsers followers={1000} name={"Champaklal"} img={"./img4.png"} />
+                        <SuggestedUsers followers={1000} name={"Champaklal"} img={"./img4.png"} /> */}
                     </div>
 
                 </div>

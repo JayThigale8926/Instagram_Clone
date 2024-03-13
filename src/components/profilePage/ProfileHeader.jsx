@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom"
 import useAuthStore from '../../store/useAuthStore';
 import useFollowUnfollowUser from '../../hooks/useFollowUnfollowUser';
 import useUserProfileStore from '../../store/userProfileStore';
+import Search2 from '../sidebar/Search2';
 
 
 const ProfileHeader = ({ username, imgURL, posts, followers, following, bio }) => {
@@ -34,7 +35,12 @@ const ProfileHeader = ({ username, imgURL, posts, followers, following, bio }) =
                         <h1 className='text-base font-semibold '>{username}</h1>
 
                         {isCurrUser ?
-                            (<button className='text-sm font-medium bg-slate-200 p-1 rounded-md hover:bg-slate-300' onClick={handleModal}>Edit Profile</button>)
+                            (<>
+                                <button className='text-sm font-medium bg-slate-200 p-1 rounded-md hover:bg-slate-300' onClick={handleModal}>Edit Profile</button>
+                                <Search2 />
+
+                            </>
+                            )
                             :
                             (<button className='text-sm font-medium bg-slate-200 p-1 rounded-md hover:bg-slate-300' onClick={() => handleFollowUnfollowUser()}>
                                 {
@@ -56,7 +62,7 @@ const ProfileHeader = ({ username, imgURL, posts, followers, following, bio }) =
 
                     <div className="flex flex-row gap-2 justify-center md:justify-start">
                         <p className='text-sm font-medium'> {posts} posts</p>
-                        <p className='text-sm font-medium'> {userProfile.followers.length} followers</p>
+                        <p className='text-sm font-medium'> {followers} followers</p>
                         <p className='text-sm font-medium'> {following} following </p>
                     </div>
 

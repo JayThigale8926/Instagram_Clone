@@ -31,7 +31,7 @@ const useFollowUnfollowUser = (userId) => {
             if (isFollowing) {
                 setAuthUser({ ...authUser, following: authUser.following.filter((uid) => uid !== userId) })
                 if (userProfile) {
-                    setUserProfile({ ...userProfile, following: userProfile.following.filter((uid) => uid !== authUser.uid) })
+                    setUserProfile({ ...userProfile, followers: userProfile.following.filter((uid) => uid !== authUser.uid) })
                 }
 
                 localStorage.setItem(
@@ -82,7 +82,7 @@ const useFollowUnfollowUser = (userId) => {
             const isFollowing = authUser.following.includes(userId)
             setIsFollowing(isFollowing);
         }
-    }, [userId])
+    }, [authUser, userId])
 
     return { isUpdating, isFollowing, handleFollowUnfollowUser }
 }

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { FaInstagram } from "react-icons/fa";
 import { RiHome4Fill } from "react-icons/ri";
 import { IoSearch } from "react-icons/io5";
@@ -11,39 +9,40 @@ import { TbLogout2 } from "react-icons/tb";
 import { Link } from 'react-router-dom';
 import useLogOut from '../../hooks/useLogOut';
 import useAuthStore from '../../store/useAuthStore';
+import SideBarItems from './SideBarItems';
 
 const SideBar = () => {
 
-    const userDetails = useAuthStore((state) => state.user)
+    // const userDetails = useAuthStore((state) => state.user)
 
-    const sideBarIcons = [
-        {
-            icon: RiHome4Fill,
-            name: "Home",
-            link: "/home"
-        },
-        {
-            icon: IoSearch,
-            name: "Search",
-            link: "/home"
-        },
-        {
-            icon: IoMdNotificationsOutline,
-            name: "Notifications",
-            link: "/home"
-        },
-        {
-            icon: RiAddBoxLine,
-            name: "Create",
-            link: "/home"
-        },
-        {
-            icon: RxAvatar,
-            name: "Profile",
-            link: `/${userDetails?.userName}`
-        },
+    // const sideBarIcons = [
+    //     {
+    //         icon: RiHome4Fill,
+    //         name: "Home",
+    //         link: "/home"
+    //     },
+    //     {
+    //         icon: IoSearch,
+    //         name: "Search",
+    //         link: "/home"
+    //     },
+    //     {
+    //         icon: IoMdNotificationsOutline,
+    //         name: "Notifications",
+    //         link: "/home"
+    //     },
+    //     {
+    //         icon: RiAddBoxLine,
+    //         name: "Create",
+    //         link: "/home"
+    //     },
+    //     {
+    //         icon: RxAvatar,
+    //         name: "Profile",
+    //         link: `/${userDetails?.userName}`
+    //     },
 
-    ]
+    // ]
 
     const { handleLogOut, error } = useLogOut();
 
@@ -60,8 +59,9 @@ const SideBar = () => {
                         <div className='flex lg:hidden font-medium  justify-center '> <FaInstagram /></div>
                     </Link>
 
+                    <SideBarItems />
 
-                    {
+                    {/* {
                         sideBarIcons.map((item, index) =>
 
                             <Link key={index} to={item.link} className="w-[10px] lg:w-56 flex justify-center lg:justify-start gap-2 my-3  p-2 hover:bg-gray-200 hover:rounded-lg">
@@ -70,34 +70,8 @@ const SideBar = () => {
                             </Link>
 
                         )
-                    }
+                    } */}
 
-
-                    {/* <Link to={'/home'} className=" flex justify-center md:justify-start gap-2 m-1 p-2 hover:bg-gray-200 hover:rounded-lg">
-                        <div className='text-3xl'> <RiHome4Fill /></div>
-                        <div className='text-base font-medium hidden md:flex' >Home</div>
-                    </Link>
-                    <Link to={'/home'} className="flex justify-center md:justify-start gap-2 m-1 p-2 hover:bg-gray-200 hover:rounded-lg">
-                        <div className='text-3xl' > <IoSearch /></div>
-                        <div className='text-base font-medium hidden md:flex'>Search</div>
-                    </Link>
-                    <Link to={'/home'} className="flex justify-center md:justify-start gap-2 m-1 p-2 hover:bg-gray-200 hover:rounded-lg">
-                        <div className='text-3xl'> <IoMdNotificationsOutline /></div>
-                        <div className='text-base font-medium hidden md:flex'>Notifications</div>
-                    </Link>
-                    <Link to={'/home'} className="flex justify-center md:justify-start gap-2 m-1 p-2 hover:bg-gray-200 hover:rounded-lg">
-                        <div className='text-3xl'> <RiAddBoxLine /></div>
-                        <div className='text-base font-medium hidden md:flex'>Create</div>
-                    </Link>
-                    <Link to={'/home'} className="flex justify-center md:justify-start gap-2 m-1 p-2 hover:bg-gray-200 hover:rounded-lg">
-                        <div className="text-3xl" > <RxAvatar /> </div>
-                        <div className='text-base font-medium hidden md:flex'>Profile</div>
-                    </Link>  */}
-
-                    {/* <Link to={'/'} className="flex justify-center lg:justify-start gap-2 mt-auto w-[10px] lg:w-56 p-2 hover:bg-gray-200 hover:rounded-lg" >
-                        <div className="flex justify-center md:text-3xl " > <TbLogout2 /> </div>
-                        <div className='text-base font-medium hidden lg:flex'>Logout</div>
-                    </Link> */}
 
                     <div className="flex justify-center lg:justify-start gap-2 mt-auto w-[10px] lg:w-56 p-2 hover:bg-gray-200 hover:rounded-lg hover:cursor-pointer" onClick={handleLogOut}>
                         <div className="flex justify-center md:text-3xl"> <TbLogout2 /> </div>
