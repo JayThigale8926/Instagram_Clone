@@ -1,14 +1,10 @@
-import Avatar from '../avatar/Avatar'
 import SuggestedUser from './SuggestedUser'
 
-const SuggestedUsers = ({ name, followers, img }) => {
+const SuggestedUsers = ({ user }) => {
     return (
         <div className="">
-
-
-
             <div className="mt-2 ">
-                <SuggestedUser name={name} followers={followers} img={img} />
+                <SuggestedUser user={user} />
             </div>
 
         </div>

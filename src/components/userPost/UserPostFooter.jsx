@@ -1,11 +1,27 @@
 import React, { useState } from 'react'
 import { CommentLogo, NotificationsLogo, UnlikeLogo } from '../../assets/constants';
+import { RiDeleteBin6Line } from "react-icons/ri";
 import PostCommentInput from './PostCommentInput';
+import useUserProfileStore from '../../store/userProfileStore';
+import useAuthStore from '../../store/useAuthStore';
+import usePostStore from '../../store/postStore';
+import { deleteObject, ref } from 'firebase/storage';
+import { firestore, storage } from '../../firebase/firebase';
+import { arrayRemove, deleteDoc, doc, updateDoc } from 'firebase/firestore';
 
-const UserPostFooter = ({ username, caption, isProfilePost }) => {
+
+const UserPostFooter = ({ username, caption, isProfilePost, post }) => {
 
     const [isNotLiked, setIsNotLiked] = useState(true);
     const [likes, setLikes] = useState(10);
+    const userProfile = useUserProfileStore((state) => state.userProfile);
+    const authUser = useAuthStore((state) => state.user);
+    const [isDeleting, setIsDeleting] = useState(false);
+    const deletePost = usePostStore((state) => state.deletePost);
+    const decrementPostsCount = useUserProfileStore((state) => state.deletePost);
+
+
+
 
     const handleLike = () => {
         if (isNotLiked) {
@@ -17,6 +33,30 @@ const UserPostFooter = ({ username, caption, isProfilePost }) => {
             setLikes(likes - 1);
         }
     }
+
+    const handleDeletePost = async () => {
+        if (!window.confirm("Are you sure you want to delete this post?")) return;
+        if (isDeleting) return;
+
+        try {
+            const imageRef = ref(storage, `posts/${post.id}`);
+            await deleteObject(imageRef);
+            const userRef = doc(firestore, "users", authUser.uid);
+            await deleteDoc(doc(firestore, "posts", post.id));
+
+            await updateDoc(userRef, {
+                posts: arrayRemove(post.id),
+            });
+
+            deletePost(post.id);
+            decrementPostsCount(post.id);
+            alert("Post deleted successfully");
+        } catch (error) {
+            alert("Error in deleting post");
+        } finally {
+            setIsDeleting(false);
+        }
+    };
 
     return (
         <>
@@ -32,6 +72,15 @@ const UserPostFooter = ({ username, caption, isProfilePost }) => {
                                 <div className="hover:cursor-pointer">
                                     <CommentLogo />
                                 </div>
+                                {
+                                    authUser?.uid === userProfile.uid && (
+                                        <RiDeleteBin6Line
+                                            className='text-xl hover:text-rose-600'
+                                            onClick={handleDeletePost}
+
+                                        />
+                                    )
+                                }
                             </div>
                             <div className="">
                                 <h1 className='text-black text-xs font-medium md:text-base '>{likes} likes</h1>
@@ -55,6 +104,11 @@ const UserPostFooter = ({ username, caption, isProfilePost }) => {
                                     <div className="hover:cursor-pointer">
                                         <CommentLogo />
                                     </div>
+
+                                    <div className="hover:cursor-pointer">
+                                        <RiDeleteBin6Line />
+                                    </div>
+
                                 </div>
                                 <div className="">
                                     <h1 className='text-black text-xs font-medium md:text-base '>{likes} likes</h1>

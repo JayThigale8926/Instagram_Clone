@@ -1,9 +1,17 @@
 import React from 'react'
 import UserPost from '../userPost/UserPost'
 import SuggestedUsers from '../suggestedUsers/SuggestedUsers'
+import useGetSuggestedUser from '../../hooks/useGetSuggestedUser'
 
 
 const HomePage = () => {
+
+    const { isLoading, suggestedUsers } = useGetSuggestedUser();
+
+    if (isLoading) {
+        return null;
+    }
+
     return (
         <>
             <div className='my-5'>
@@ -34,9 +42,10 @@ const HomePage = () => {
                             </div>
                         </div>
 
-                        {/* <SuggestedUsers followers={1000} name={"Jay Thigale"} img={"./img3.png"} />
-                        <SuggestedUsers followers={1000} name={"Sankalpa Thigale"} img={"./img1.png"} />
-                        <SuggestedUsers followers={1000} name={"Champaklal"} img={"./img4.png"} /> */}
+                        {
+                            suggestedUsers.map(user => (<SuggestedUsers user={user} key={user.uid} />))
+                        }
+
                     </div>
 
                 </div>

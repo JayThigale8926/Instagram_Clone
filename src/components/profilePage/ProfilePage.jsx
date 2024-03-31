@@ -8,6 +8,7 @@ import useGetUserProfileByUsername from '../../hooks/useGetUserProfileByUsername
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import useUserProfileStore from '../../store/userProfileStore'
+import useGetUserPosts from '../../hooks/useGetUserPosts'
 
 const ProfilePage = () => {
 
@@ -15,7 +16,6 @@ const ProfilePage = () => {
     const { isLoading } = useGetUserProfileByUsername(user);
     const { userProfile } = useUserProfileStore();
     const userNotAvail = !userProfile && !isLoading;
-
 
 
     if (userNotAvail) {
@@ -47,6 +47,9 @@ const ProfilePage = () => {
                             <div className="flex flex-col gap-5">
                                 <ProfileTabs />
                                 <ProfilePost />
+                                {/* {posts.map((post) => (
+                                    <ProfilePost post={post} key={post.id} />
+                                ))} */}
                             </div>
                         </>
                     )
@@ -82,3 +85,4 @@ const UserNotFound = () => (
         <Link to={"/"} className=''>Go Home</Link>
     </div>
 )
+

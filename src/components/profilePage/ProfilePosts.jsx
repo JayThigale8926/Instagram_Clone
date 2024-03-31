@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import { CommentLogo, NotificationsLogo, UnlikeLogo } from '../../assets/constants'
 import Modal from '../modal/Modal';
 import Comment from '../comment/Comment';
-import PostCommentInput from '../userPost/PostCommentInput';
 import UserPostFooter from '../userPost/UserPostFooter';
 
-const ProfilePosts = () => {
+const ProfilePosts = ({ posts }) => {
 
     const [isNotLiked, setIsNotLiked] = useState(true);
     const [likes, setLikes] = useState(10);
@@ -32,7 +31,9 @@ const ProfilePosts = () => {
             <div className="w-[250px]">
                 <div className="">
                     <img className='w-[250px] h-[250px] object-cover rounded-md overflow-hidden transform transition duration-500 
-                                hover:scale-110 hover:cursor-pointer ' onClick={handleModal} src="./img1.png" alt="" />
+                                hover:scale-110 hover:cursor-pointer '
+                        onClick={handleModal}
+                        src={posts.imageURL} alt="" />
                 </div>
 
 
@@ -45,7 +46,7 @@ const ProfilePosts = () => {
                                 <div className="flex flex-col">
 
                                     <div className='relative w-[300px] h-[250px] md:w-[400px] md:h-[600px] '>
-                                        <img className=" w-[300px] h-[250px] p-2 md:w-[400px] md:h-[500px] object-contain" src="./img1.png" alt="" />
+                                        <img className=" w-[300px] h-[250px] p-2 md:w-[400px] md:h-[500px] object-contain" src={posts.imageURL} alt="" />
 
                                         <div className="flex absolute top-0 right-0 ml-auto w-5 text-lg font-bold text-black hover:cursor-pointer p-1 text-right md:hidden"
                                             onClick={handleModal} >X
@@ -60,20 +61,10 @@ const ProfilePosts = () => {
                                     <div className='flex flex-col'>
                                         <Comment img={"./img1.png"} userName={"Jay8926"} createdAt={"2d ago"} userComment={"Nice Pic !!!"} />
                                         <Comment img={"./img2.png"} userName={"asd"} createdAt={"3d ago"} userComment={"Nice Pic !!!"} />
-                                        <Comment img={"./img2.png"} userName={"asd"} createdAt={"3d ago"} userComment={"Nice Pic !!!"} />
-                                        <Comment img={"./img2.png"} userName={"asd"} createdAt={"3d ago"} userComment={"Nice Pic !!!"} />
-                                        <Comment img={"./img2.png"} userName={"asd"} createdAt={"3d ago"} userComment={"Nice Pic !!!"} />
-                                        <Comment img={"./img2.png"} userName={"asd"} createdAt={"3d ago"} userComment={"Nice Pic !!!"} />
-                                        <Comment img={"./img2.png"} userName={"asd"} createdAt={"3d ago"} userComment={"Nice Pic !!!"} />
-                                        <Comment img={"./img2.png"} userName={"asd"} createdAt={"3d ago"} userComment={"Nice Pic !!!"} />
-                                        <Comment img={"./img2.png"} userName={"asd"} createdAt={"3d ago"} userComment={"Nice Pic !!!"} />
-                                        <Comment img={"./img2.png"} userName={"asd"} createdAt={"3d ago"} userComment={"Nice Pic !!!"} />
-                                        <Comment img={"./img2.png"} userName={"asd"} createdAt={"3d ago"} userComment={"Nice Pic !!!"} />
-                                        <Comment img={"./img2.png"} userName={"asd"} createdAt={"3d ago"} userComment={"Nice Pic !!!"} />
                                     </div>
 
                                     <div className="sticky bottom-0 w-full">
-                                        <UserPostFooter isProfilePost={true} />
+                                        <UserPostFooter isProfilePost={true} post={posts} />
                                     </div>
 
                                 </div>

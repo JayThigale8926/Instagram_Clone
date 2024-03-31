@@ -15,8 +15,6 @@ const useEditProfile = () => {
 
 
     const editProfile = async (inputs, selectedFile) => {
-        console.log(authUser)
-        console.log(inputs)
         if (isUpdating || !authUser) return;
         setIsUpdating(true);
 
