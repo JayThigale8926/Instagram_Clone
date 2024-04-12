@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 import useFollowUnfollowUser from "../../hooks/useFollowUnfollowUser"
 import useAuthStore from "../../store/useAuthStore";
 
 
 const SuggestedUser = ({ user, setUser }) => {
 
-    const { isUpdating, isFollowing, handleFollowUnfollowUser } = useFollowUnfollowUser(user.uid);
+    const { isFollowing, handleFollowUnfollowUser } = useFollowUnfollowUser(user.uid);
     const authUser = useAuthStore(state => state.user)
 
     const handleFollowUnfollow = async () => {
@@ -22,11 +23,16 @@ const SuggestedUser = ({ user, setUser }) => {
         <>
             <div className="md:w-30 flex justify-between p-2 sm:flex-col md:flex-row">
                 <div className="flex gap-2">
-                    <img className='rounded-full w-10 h-10 object-cover' src={user.profilePicUrl} alt="" />
+                    <Link to={`/${user.userName}`}>
+                        <img className='rounded-full w-10 h-10 object-cover' src={user.profilePicUrl} alt="" />
+                    </Link>
                     <div className="p-1">
-                        <p className="text-base font-medium"> {user.fullName} </p>
+                        <Link to={`/${user.userName}`}>
+                            <p className="text-base font-medium"> {user.fullName} </p>
+                        </Link>
                         <p className=" text-[10px] font-medium "> {user.followers.length} followers </p>
                     </div>
+
                 </div>
 
                 {

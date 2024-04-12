@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import usePostComment from '../../hooks/usePostComment'
 
 const PostCommentInput = ({ post }) => {
@@ -17,7 +17,7 @@ const PostCommentInput = ({ post }) => {
                 <div className="relative">
                     <div className="text-black">
                         <input className="w-full h-12 text-black text-xs outline-none border-b-2 border-gray-200 md:text-base" type="text" placeholder='Post comment...'
-                            onChange={(e) => (setComment(e.target.value))} />
+                            onChange={(e) => (setComment(e.target.value))} value={comment} />
                     </div>
                     <div className="">
                         <div className=" absolute top-2 right-2">

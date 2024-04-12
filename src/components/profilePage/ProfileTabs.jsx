@@ -1,4 +1,3 @@
-import React from 'react'
 import { GrGrid } from "react-icons/gr";
 import { FaRegBookmark } from "react-icons/fa6";
 import { FaRegHeart } from "react-icons/fa";

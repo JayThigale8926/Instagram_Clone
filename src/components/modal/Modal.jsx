@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Modal = ({ visible, closeModal, children }) => {
     if (!visible) {
         return null;

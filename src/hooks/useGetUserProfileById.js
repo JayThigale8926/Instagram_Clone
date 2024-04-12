@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { firestore } from '../firebase/firebase'
 
 const useGetUserProfileById = (userId) => {
-
     const [userProfile, setUserProfile] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
 

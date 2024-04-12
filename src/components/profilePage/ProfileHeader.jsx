@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import Modal from '../modal/Modal';
 import ProfileEdit from './ProfileEdit';
 import { useParams } from "react-router-dom"
@@ -13,7 +13,7 @@ const ProfileHeader = ({ username, imgURL, posts, followers, following, bio }) =
     const [isVisible, setIsVisible] = useState(false);
     const currentUser = useAuthStore((state) => state.user)
     const { userProfile } = useUserProfileStore();
-    const { isUpdating, isFollowing, handleFollowUnfollowUser } = useFollowUnfollowUser(userProfile?.uid);
+    const { isFollowing, handleFollowUnfollowUser } = useFollowUnfollowUser(userProfile?.uid);
 
     const { user } = useParams();
 

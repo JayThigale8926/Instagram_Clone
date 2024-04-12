@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { RiAddBoxLine } from 'react-icons/ri'
 import CreatePostModal from './CreatePostModal';
 import Modal from '../modal/Modal';

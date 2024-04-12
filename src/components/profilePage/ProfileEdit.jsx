@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import useAuthStore from '../../store/useAuthStore'
 import usePreviewImg from '../../hooks/usePreviewImg'
 import useEditProfile from '../../hooks/useEditProfile'

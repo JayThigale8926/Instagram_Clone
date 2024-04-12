@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Avatar from "../avatar/Avatar"
 import useGetUserProfileById from '../../hooks/useGetUserProfileById'
 

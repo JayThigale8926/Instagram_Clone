@@ -1,15 +1,13 @@
-import React, { useState } from 'react'
-import { CommentLogo, NotificationsLogo, UnlikeLogo } from '../../assets/constants'
+import { useState } from 'react'
 import Modal from '../modal/Modal';
 import Comment from '../comment/Comment';
 import UserPostFooter from '../userPost/UserPostFooter';
 import useUserProfileStore from '../../store/userProfileStore';
 import Avatar from '../avatar/Avatar';
+import { timeAgo } from '../../utils/timeAgo';
 
 const ProfilePosts = ({ posts }) => {
 
-    const [isNotLiked, setIsNotLiked] = useState(true);
-    const [likes, setLikes] = useState(10);
     const [isVisible, setIsVisible] = useState(false);
     const userProfile = useUserProfileStore((state) => state.userProfile)
 
@@ -46,7 +44,7 @@ const ProfilePosts = ({ posts }) => {
                                                     <Avatar img={userProfile.profilePicUrl} />
                                                     <div className="">
                                                         <h1 className='text-xs font-medium text-black md:text-sm'>{userProfile.fullName}</h1>
-                                                        <p className='text-[10px] text-gray-400 md:text-xs md:flex'>1d ago</p>
+                                                        <p className='text-[10px] text-gray-400 md:text-xs md:flex'>{timeAgo(posts.createdAt)}</p>
                                                     </div>
                                                     <div className="text-sm font-medium">{posts.caption}</div>
 

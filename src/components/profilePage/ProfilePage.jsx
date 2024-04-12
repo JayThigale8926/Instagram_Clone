@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import ProfileHeader from './ProfileHeader'
 import ProfileTabs from './ProfileTabs'
 import ProfilePost from './ProfilePost'
@@ -8,7 +7,7 @@ import useGetUserProfileByUsername from '../../hooks/useGetUserProfileByUsername
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import useUserProfileStore from '../../store/userProfileStore'
-import useGetUserPosts from '../../hooks/useGetUserPosts'
+
 
 const ProfilePage = () => {
 
@@ -46,9 +45,7 @@ const ProfilePage = () => {
                             <div className="flex flex-col gap-5">
                                 <ProfileTabs />
                                 <ProfilePost />
-                                {/* {posts.map((post) => (
-                                    <ProfilePost post={post} key={post.id} />
-                                ))} */}
+
                             </div>
                         </>
                     )

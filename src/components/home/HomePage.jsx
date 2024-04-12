@@ -1,19 +1,12 @@
-import React from 'react'
 import UserPost from '../userPost/UserPost'
 import SuggestedUsers from '../suggestedUsers/SuggestedUsers'
 import useGetSuggestedUser from '../../hooks/useGetSuggestedUser'
 import useGetFeedPosts from '../../hooks/useGetFeedPost'
-import useGetUserProfileById from '../../hooks/useGetUserProfileById'
-
 
 const HomePage = () => {
 
     const { suggestedUsers } = useGetSuggestedUser();
     const { isLoading, posts } = useGetFeedPosts();
-
-    // posts.map(id => console.log(id.createdBy))
-
-
 
     if (isLoading) {
         return null;
@@ -26,7 +19,14 @@ const HomePage = () => {
 
                     <div className="lg:mx-32">
                         <div className=" max-w-[500px] px-5 ">
-                            {!isLoading && posts.length > 0 && posts.map((post) => <UserPost key={post.id} post={post} />)}
+                            {
+                                posts.length === 0 && <BlankHome />
+                            }
+                            {!isLoading && posts.length > 0 && posts.map((post) =>
+                                <ul key={post.id}>
+                                    <UserPost post={post} />
+                                </ul>
+                            )}
                         </div>
 
 
@@ -42,7 +42,14 @@ const HomePage = () => {
                         </div>
 
                         {
-                            suggestedUsers.map(user => (<SuggestedUsers user={user} key={user.uid} />))
+                            suggestedUsers.map(user => (
+                                <>
+                                    <ul key={user.uid}>
+                                        <SuggestedUsers user={user} />
+                                    </ul>
+                                </>
+
+                            ))
                         }
 
                     </div>
@@ -54,3 +61,12 @@ const HomePage = () => {
 }
 
 export default HomePage
+
+const BlankHome = () => {
+    return (
+        <div className='max-w-[500px] px-5'>
+            <h1 className='text-red-500 font-medium text-xl'>Looks like you don't have any friends. <br /> Let's make some new friends!!!  </h1>
+
+        </div>
+    )
+}

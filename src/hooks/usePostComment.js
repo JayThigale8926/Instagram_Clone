@@ -19,9 +19,10 @@ const usePostComment = () => {
 
         try {
             await updateDoc(doc(firestore, "posts", postId), {
-                comments: arrayUnion(newComment),
+                comments: arrayUnion(newComment)
             });
-            addComment(postId, comment)
+            addComment(postId, newComment)
+
         }
         catch (error) {
             alert("Unable to post comment");

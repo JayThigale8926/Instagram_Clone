@@ -1,4 +1,3 @@
-import React from 'react'
 import ProfilePosts from './ProfilePosts'
 import useGetUserPosts from '../../hooks/useGetUserPosts';
 
@@ -15,8 +14,10 @@ const ProfilePost = () => {
                 {!isLoading && (
                     <>
                         {posts.map((post) => (
+                            <ul key={post.id}>
+                                <ProfilePosts posts={post} />
 
-                            <ProfilePosts posts={post} key={post.id} />
+                            </ul>
 
                         ))}
                     </>
