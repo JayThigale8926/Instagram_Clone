@@ -1,18 +1,22 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import UserPostHeader from './UserPostHeader'
 import UserPostFooter from './UserPostFooter'
+import { Link } from 'react-router-dom'
 
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import { useState } from 'react'
+import useGetUserProfileById from '../../hooks/useGetUserProfileById'
 
-const UserPost = ({ username, caption, img }) => {
+
+const UserPost = ({ post }) => {
 
     const [isloading, setIsLoading] = useState(true);
+    const { userProfile } = useGetUserProfileById(post.createdBy);
+
 
     useEffect(() => {
 
-        setTimeout(() => (setIsLoading(!isloading)), 1500)
+        setTimeout(() => (setIsLoading(!isloading)), 1000)
 
     }, [])
 
@@ -42,12 +46,16 @@ const UserPost = ({ username, caption, img }) => {
                     )
                     :
                     (
+
                         <div className="my-5 mb-10" >
-                            <UserPostHeader username={username} />
+
+                            <UserPostHeader userProfile={userProfile} post={post} />
+
+
                             <div className='mb-3'>
-                                <img className='rounded-md ' src={img} alt="" />
+                                <img className='rounded-md ' src={post.imageURL} alt="" />
                             </div>
-                            <UserPostFooter username={username} caption={caption} />
+                            <UserPostFooter username={userProfile.userName} caption={userProfile.caption} post={post} />
 
                         </div>
                     )

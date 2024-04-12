@@ -2,11 +2,18 @@ import React from 'react'
 import UserPost from '../userPost/UserPost'
 import SuggestedUsers from '../suggestedUsers/SuggestedUsers'
 import useGetSuggestedUser from '../../hooks/useGetSuggestedUser'
+import useGetFeedPosts from '../../hooks/useGetFeedPost'
+import useGetUserProfileById from '../../hooks/useGetUserProfileById'
 
 
 const HomePage = () => {
 
-    const { isLoading, suggestedUsers } = useGetSuggestedUser();
+    const { suggestedUsers } = useGetSuggestedUser();
+    const { isLoading, posts } = useGetFeedPosts();
+
+    // posts.map(id => console.log(id.createdBy))
+
+
 
     if (isLoading) {
         return null;
@@ -19,17 +26,9 @@ const HomePage = () => {
 
                     <div className="lg:mx-32">
                         <div className=" max-w-[500px] px-5 ">
-                            <UserPost username={"Jay Thigale"} caption={"This is my first post!!!!"} img={"./img1.png"} />
+                            {!isLoading && posts.length > 0 && posts.map((post) => <UserPost key={post.id} post={post} />)}
                         </div>
-                        <div className=" max-w-[500px] px-5 ">
-                            <UserPost username={"Jay Thigale"} caption={"hiii"} img={"./img2.png"} />
-                        </div>
-                        <div className=" max-w-[500px] px-5 ">
-                            <UserPost username={"Jay Thigale"} caption={"hiii"} img={"./img3.png"} />
-                        </div>
-                        <div className=" max-w-[500px] px-5 ">
-                            <UserPost username={"Jay Thigale"} caption={"hiii"} img={"./img4.png"} />
-                        </div>
+
 
                     </div>
 

@@ -11,7 +11,7 @@ const useEditProfile = () => {
     const authUser = useAuthStore((state) => state.user);
     const setAuthUser = useAuthStore((state) => state.setUser);
     const setUserProfile = useUserProfileStore((state) => state.setUserProfile);
-
+    // console.log("Auth user : " + authUser.posts)
 
 
     const editProfile = async (inputs, selectedFile) => {
@@ -40,6 +40,7 @@ const useEditProfile = () => {
             localStorage.setItem("user-info", JSON.stringify(updatedUser));
             setAuthUser(updatedUser);
             setUserProfile(updatedUser);
+            // console.log("updated user : " + updatedUser.posts)
             alert("Profile updated successfully");
         }
         catch (error) {

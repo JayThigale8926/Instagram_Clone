@@ -10,10 +10,11 @@ const ProfileEdit = ({ handleModal }) => {
     const { editProfile, isUpdating } = useEditProfile()
 
     const [inputs, setInputs] = useState({
-        fullname: "",
-        username: "",
-        bio: ""
+        fullname: userProfileDetails.fullName,
+        username: userProfileDetails.userName,
+        bio: userProfileDetails.bio
     })
+
 
     const handleModalClose = () => {
         handleModal();
@@ -59,7 +60,7 @@ const ProfileEdit = ({ handleModal }) => {
 
                     <div className=" w-full text-xs mb-4">
                         <label className="font-semibold text-gray-600">Username <abbr title="required">*</abbr></label>
-                        <input placeholder="Enter username" className="appearance-none block w-52 md:w-64 bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" required="required" type="text"
+                        <input placeholder="Enter username" className="appearance-none block w-52 md:w-64 bg-grey-lighter text-grey-darker border border-grey-lighter rounded-lg h-10 px-4" type="text"
                             value={inputs.username || userProfileDetails.userName}
                             onChange={(e) => setInputs({ ...inputs, username: e.target.value })} />
                     </div>

@@ -8,31 +8,18 @@ import usePostStore from '../../store/postStore';
 import { deleteObject, ref } from 'firebase/storage';
 import { firestore, storage } from '../../firebase/firebase';
 import { arrayRemove, deleteDoc, doc, updateDoc } from 'firebase/firestore';
+import useLikePost from '../../hooks/useLikePost';
 
 
 const UserPostFooter = ({ username, caption, isProfilePost, post }) => {
 
-    const [isNotLiked, setIsNotLiked] = useState(true);
-    const [likes, setLikes] = useState(10);
     const userProfile = useUserProfileStore((state) => state.userProfile);
     const authUser = useAuthStore((state) => state.user);
     const [isDeleting, setIsDeleting] = useState(false);
     const deletePost = usePostStore((state) => state.deletePost);
     const decrementPostsCount = useUserProfileStore((state) => state.deletePost);
 
-
-
-
-    const handleLike = () => {
-        if (isNotLiked) {
-            setIsNotLiked(!isNotLiked);  //To like a post
-            setLikes(likes + 1);
-        }
-        else {
-            setIsNotLiked(!isNotLiked);  //To dislike a post
-            setLikes(likes - 1);
-        }
-    }
+    const { handleLikePost, isLiked, likes } = useLikePost(post);
 
     const handleDeletePost = async () => {
         if (!window.confirm("Are you sure you want to delete this post?")) return;
@@ -65,8 +52,8 @@ const UserPostFooter = ({ username, caption, isProfilePost, post }) => {
                     (
                         <div className="bg-white p-2">
                             <div className="flex gap-3">
-                                <div className="hover:cursor-pointer" onClick={handleLike}>
-                                    {isNotLiked ? (< NotificationsLogo />) : (<UnlikeLogo />)}
+                                <div className="hover:cursor-pointer" onClick={handleLikePost}>
+                                    {!isLiked ? (< NotificationsLogo />) : (<UnlikeLogo />)}
                                 </div>
 
                                 <div className="hover:cursor-pointer">
@@ -87,7 +74,7 @@ const UserPostFooter = ({ username, caption, isProfilePost, post }) => {
                             </div>
 
                             <div className="">
-                                <PostCommentInput />
+                                <PostCommentInput post={post} />
                             </div>
 
                         </div>
@@ -97,21 +84,22 @@ const UserPostFooter = ({ username, caption, isProfilePost, post }) => {
                         <>
                             <div className="">
                                 <div className="flex gap-3">
-                                    <div className="hover:cursor-pointer" onClick={handleLike}>
-                                        {isNotLiked ? (< NotificationsLogo />) : (<UnlikeLogo />)}
+                                    <div className="hover:cursor-pointer" onClick={handleLikePost} >
+                                        {!isLiked ? (< NotificationsLogo />) : (<UnlikeLogo />)}
                                     </div>
 
                                     <div className="hover:cursor-pointer">
                                         <CommentLogo />
                                     </div>
 
-                                    <div className="hover:cursor-pointer">
+                                    {/* <div className="hover:cursor-pointer">
                                         <RiDeleteBin6Line />
-                                    </div>
+                                    </div> */}
 
                                 </div>
                                 <div className="">
-                                    <h1 className='text-black text-xs font-medium md:text-base '>{likes} likes</h1>
+                                    <h1 className='text-black text-xs font-medium md:text-base '>
+                                        {likes} likes</h1>
                                 </div>
 
 
@@ -128,7 +116,7 @@ const UserPostFooter = ({ username, caption, isProfilePost, post }) => {
 
 
                                 <div className="">
-                                    <PostCommentInput />
+                                    <PostCommentInput post={post} />
                                 </div>
 
                             </div>

@@ -17,7 +17,6 @@ const ProfilePage = () => {
     const { userProfile } = useUserProfileStore();
     const userNotAvail = !userProfile && !isLoading;
 
-
     if (userNotAvail) {
         return <>
             <UserNotFound />

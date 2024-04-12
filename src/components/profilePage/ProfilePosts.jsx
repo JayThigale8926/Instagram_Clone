@@ -3,24 +3,15 @@ import { CommentLogo, NotificationsLogo, UnlikeLogo } from '../../assets/constan
 import Modal from '../modal/Modal';
 import Comment from '../comment/Comment';
 import UserPostFooter from '../userPost/UserPostFooter';
+import useUserProfileStore from '../../store/userProfileStore';
+import Avatar from '../avatar/Avatar';
 
 const ProfilePosts = ({ posts }) => {
 
     const [isNotLiked, setIsNotLiked] = useState(true);
     const [likes, setLikes] = useState(10);
     const [isVisible, setIsVisible] = useState(false);
-
-
-    const handleLike = () => {
-        if (isNotLiked) {
-            setIsNotLiked(!isNotLiked);  //To like a post
-            setLikes(likes + 1);
-        }
-        else {
-            setIsNotLiked(!isNotLiked);  //To dislike a post
-            setLikes(likes - 1);
-        }
-    }
+    const userProfile = useUserProfileStore((state) => state.userProfile)
 
     const handleModal = () => {
         setIsVisible(!isVisible);
@@ -33,7 +24,7 @@ const ProfilePosts = ({ posts }) => {
                     <img className='w-[250px] h-[250px] object-cover rounded-md overflow-hidden transform transition duration-500 
                                 hover:scale-110 hover:cursor-pointer '
                         onClick={handleModal}
-                        src={posts.imageURL} alt="" />
+                        src={posts.imageURL} alt="Post image" />
                 </div>
 
 
@@ -46,7 +37,26 @@ const ProfilePosts = ({ posts }) => {
                                 <div className="flex flex-col">
 
                                     <div className='relative w-[300px] h-[250px] md:w-[400px] md:h-[600px] '>
-                                        <img className=" w-[300px] h-[250px] p-2 md:w-[400px] md:h-[500px] object-contain" src={posts.imageURL} alt="" />
+
+                                        <img className=" w-[300px] h-[250px] p-2 md:w-[400px] md:h-[500px] object-contain" src={posts.imageURL} alt="Post image" />
+
+                                        <div className="hidden md:flex">
+                                            <div className="">
+                                                <div className="flex p-3 gap-2 items-center">
+                                                    <Avatar img={userProfile.profilePicUrl} />
+                                                    <div className="">
+                                                        <h1 className='text-xs font-medium text-black md:text-sm'>{userProfile.fullName}</h1>
+                                                        <p className='text-[10px] text-gray-400 md:text-xs md:flex'>1d ago</p>
+                                                    </div>
+                                                    <div className="text-sm font-medium">{posts.caption}</div>
+
+                                                </div>
+
+
+
+
+                                            </div>
+                                        </div>
 
                                         <div className="flex absolute top-0 right-0 ml-auto w-5 text-lg font-bold text-black hover:cursor-pointer p-1 text-right md:hidden"
                                             onClick={handleModal} >X
@@ -59,8 +69,12 @@ const ProfilePosts = ({ posts }) => {
                                         onClick={handleModal} >X</div>
 
                                     <div className='flex flex-col'>
-                                        <Comment img={"./img1.png"} userName={"Jay8926"} createdAt={"2d ago"} userComment={"Nice Pic !!!"} />
-                                        <Comment img={"./img2.png"} userName={"asd"} createdAt={"3d ago"} userComment={"Nice Pic !!!"} />
+
+                                        {
+                                            posts.comments.map((comment) => (
+                                                <Comment comment={comment} key={comment.id} />
+                                            ))
+                                        }
                                     </div>
 
                                     <div className="sticky bottom-0 w-full">
@@ -80,25 +94,3 @@ const ProfilePosts = ({ posts }) => {
 }
 
 export default ProfilePosts
-
-{/* <div className="flex gap-3 p-2">
-                                            <div className="hover:cursor-pointer" onClick={handleLike}>
-                                                {isNotLiked ? (< NotificationsLogo />) : (<UnlikeLogo />)}
-                                                <h1 className='text-black text-xs font-medium md:text-base '>{likes} likes</h1>
-                                            </div>
-
-                                            <div className="hover:cursor-pointer" >
-                                                <CommentLogo />
-                                            </div>
-
-                                        </div> */}
-
-
-
-//     <div className='relative w-[300px] h-[250px] md:h-[500px] '>
-//     <img className=" w-[300px] h-[250px] p-2 md:h-[400px] object-contain" src="./img1.png" alt="" />
-
-//     <div className="flex absolute top-0 right-0 ml-auto w-5 text-lg font-bold text-black hover:cursor-pointer p-1 text-right md:hidden"
-//         onClick={handleModal} >X
-//     </div>
-// </div>
