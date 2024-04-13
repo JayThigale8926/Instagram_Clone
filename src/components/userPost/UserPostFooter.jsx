@@ -26,7 +26,6 @@ const UserPostFooter = ({ username, caption, isProfilePost, post }) => {
     const { handleLikePost, isLiked, likes } = useLikePost(post);
     const { userProfile } = useGetUserProfileById(post.createdBy)
 
-
     const [isVisible, setIsVisible] = useState(false);
 
     const handleDeletePost = async () => {
@@ -138,21 +137,22 @@ const UserPostFooter = ({ username, caption, isProfilePost, post }) => {
 
                                 <div className='relative w-[300px] h-[250px] md:w-[400px] md:h-[600px] '>
 
-                                    <img className=" w-[300px] h-[250px] p-2 md:w-[400px] md:h-[500px] object-contain" src={post.imageURL} alt="Post image" />
+                                    <img className=" w-[300px] h-[250px] p-2 md:w-[400px] md:h-[500px] object-contain rounded-md" src={post.imageURL} alt="Post image" />
 
                                     <div className="hidden md:flex">
-                                        <div className="">
+                                        <div className="flex gap-5 items-center">
                                             <div className="flex p-3 gap-2 items-center">
                                                 <Avatar img={userProfile?.profilePicUrl} />
                                                 <div className="">
                                                     <h1 className='text-xs font-medium text-black md:text-sm'>{userProfile?.fullName}</h1>
-                                                    <p className='text-[10px] text-gray-400 md:text-xs md:flex'>{timeAgo(post.createdAt)}</p>
+                                                    <p className='text-[10px] text-gray-600 md:text-xs md:flex'>{timeAgo(post.createdAt)}</p>
                                                 </div>
-                                                <div className="text-sm font-medium">{post.caption}</div>
 
                                             </div>
 
-
+                                            <div className="max-w-48">
+                                                <h1 className='text-xs font-medium'>{post.caption}</h1>
+                                            </div>
 
 
                                         </div>

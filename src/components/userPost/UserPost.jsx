@@ -12,7 +12,6 @@ const UserPost = ({ post }) => {
     const [isloading, setIsLoading] = useState(true);
     const { userProfile } = useGetUserProfileById(post.createdBy);
 
-
     useEffect(() => {
 
         setTimeout(() => (setIsLoading(!isloading)), 1000)
@@ -52,9 +51,10 @@ const UserPost = ({ post }) => {
 
 
                             <div className='mb-3'>
-                                <img className='rounded-md ' src={post.imageURL} alt="" />
+                                <img className='w-[300px] h-[400px] md:w-[400px] md:h-[500px] object-contain' src={post.imageURL} alt="" />
                             </div>
-                            <UserPostFooter username={userProfile.userName} caption={userProfile.caption} post={post} />
+                            <UserPostFooter username={userProfile?.userName} caption={post.caption}
+                                post={post} />
 
                         </div>
                     )

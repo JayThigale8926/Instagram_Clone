@@ -32,7 +32,7 @@ const ProfileHeader = ({ username, imgURL, posts, followers, following, bio }) =
 
                 <div className="flex flex-col gap-3">
                     <div className="flex gap-2 justify-center md:justify-start">
-                        <h1 className='text-base font-semibold '>{username}</h1>
+                        <h1 className='text-2xl font-semibold '>{username}</h1>
 
                         {isCurrUser ?
                             (<>

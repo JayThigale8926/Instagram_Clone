@@ -39,17 +39,19 @@ const ProfilePosts = ({ posts }) => {
                                         <img className=" w-[300px] h-[250px] p-2 md:w-[400px] md:h-[500px] object-contain" src={posts.imageURL} alt="Post image" />
 
                                         <div className="hidden md:flex">
-                                            <div className="">
+                                            <div className="flex gap-5 items-center">
                                                 <div className="flex p-3 gap-2 items-center">
                                                     <Avatar img={userProfile.profilePicUrl} />
                                                     <div className="">
                                                         <h1 className='text-xs font-medium text-black md:text-sm'>{userProfile.fullName}</h1>
                                                         <p className='text-[10px] text-gray-400 md:text-xs md:flex'>{timeAgo(posts.createdAt)}</p>
                                                     </div>
-                                                    <div className="text-sm font-medium">{posts.caption}</div>
 
                                                 </div>
 
+                                                <div className="max-w-48">
+                                                    <h1 className='text-xs font-medium'>{posts.caption}</h1>
+                                                </div>
 
 
 
