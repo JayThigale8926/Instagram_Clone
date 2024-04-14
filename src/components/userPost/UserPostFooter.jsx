@@ -85,7 +85,9 @@ const UserPostFooter = ({ username, caption, isProfilePost, post }) => {
                             </div>
 
 
-
+                            <div className="sticky bottom-0 w-full">
+                                <PostCommentInput post={post} />
+                            </div>
                         </div>
                     )
                     :
@@ -180,6 +182,24 @@ const UserPostFooter = ({ username, caption, isProfilePost, post }) => {
 
                                         ))
                                     }
+                                </div>
+
+                                <div className="">
+                                    <div className="flex gap-3">
+                                        <div className="hover:cursor-pointer" onClick={handleLikePost} >
+                                            {!isLiked ? (< NotificationsLogo />) : (<UnlikeLogo />)}
+                                        </div>
+
+                                        <div className="hover:cursor-pointer" onClick={handleModal}>
+                                            <CommentLogo />
+                                        </div>
+
+
+                                    </div>
+                                    <div className="">
+                                        <h1 className='text-black text-xs font-medium md:text-base '>
+                                            {likes} likes</h1>
+                                    </div>
                                 </div>
 
                                 <div className="sticky bottom-0 w-full">
