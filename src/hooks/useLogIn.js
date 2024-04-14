@@ -29,7 +29,7 @@ const useLogIn = () => {
                 const docSnap = await getDoc(docRef);
                 localStorage.setItem("user-info", JSON.stringify(docSnap.data()))
                 loginUser(docSnap.data())
-                alert("Login successfull");
+
             }
             else {
                 alert("Invalid Email Or Password")

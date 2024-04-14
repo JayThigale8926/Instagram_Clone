@@ -10,6 +10,7 @@ const LoginLogoutPage = () => {
 
     return (
         <>
+
             <div className="h-screen flex items-center justify-center ">
 
                 <div className="h-[610px] flex">
@@ -19,7 +20,10 @@ const LoginLogoutPage = () => {
                         <img src="./auth.png" alt="" />
                     </div>
 
-                    <div className="flex flex-col w-[310px] mt-5">
+                    <div className="flex flex-col w-[310px] mt-4">
+                        <h1 className='text-blue-500 font-semibold'>
+                            Sample Email - sample@gmail.com <br /> Password - sample1234
+                        </h1>
                         <div className="w-[310px] flex flex-col items-center  border-2 border-gray-700      rounded-md">
                             {isLogin ?
                                 (<Login />)
