@@ -4,9 +4,12 @@ import usePostComment from '../../hooks/usePostComment'
 const PostCommentInput = ({ post }) => {
 
     const [comment, setComment] = useState("")
-    const { handlePostComment } = usePostComment();
+    const { handlePostComment, isLoading } = usePostComment();
 
     const handleAddComment = async () => {
+        if (isLoading) {
+            return
+        }
         await handlePostComment(post.id, comment)
         setComment("");
     }
